@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mobairu Frontend
+
+The Awesome frontend site for Mobairu!
 
 ## Getting Started
 
@@ -12,23 +14,83 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.jsx`. The page auto-updates as you edit the file.
+## Project Info
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+This project has several parts. Here is the information to help you understand.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- `pages/` folder contains the files to be rendered. It has auto routing feature, as provided by NextJS
+- `styles/` folder contains the Styling files. We're using SCSS a.k.a SASS for styling.
+- `components/` folder contains the components for the project. As in react, they can be re-used and 
+  helps in keeping code DRY.
+- `public/` contains all the assets and Images (Static files)
 
-## Learn More
+### Project layout info
 
-To learn more about Next.js, take a look at the following resources:
+In `components/` folder, we'll have a layout Components which will return following things:
+```
+<Navbar />
+{ children }
+<Footer />
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To have navbar, footer for each page, we'll add them, Remember `Navbar.jsx` and `Footer.jsx` are 
+components too in components folder, which we import in `Layout.jsx` and use, Then in `pages/_app.js` 
+which contains the basic structure of an App.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+By default, it's like this
 
-## Deploy on Vercel
+```
+const MyApp = ({Component, pageProps}) => {
+    return <Component {...pageProps} />
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+And after having the layout attribute, It'll be like this
+```
+return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+And `Layout.jsx` is like this
+```
+return (
+    <div className="content">
+      <Navbar />
+      { children }
+      <Footer />
+    </div>
+  );
+```
+
+Children being the page's content, whichever thing is between nav and footer and Navbar and 
+footer to keep things DRY.
+
+Edit the `Navbar.jsx` and `Footer.jsx` to update the Navbar and Footer, As the layout is defined,
+they're Auto added to all the pages.
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome. After cloning & setting up project locally, you can just submit
+a PR to this repo and it will be deployed once it's accepted.
+
+⚠️ It’s good to have descriptive commit messages, or PR titles so that other contributors can understand about your
+commit or the PR Created. Read [conventional commits](https://www.conventionalcommits.org/en/v1.0.0-beta.3/) before
+making the commit message.
+
+## 💬 Get in touch
+
+If you have various suggestions, questions or want to discuss things with our community, Join our discord server!
+
+[![Discord](https://discordapp.com/api/guilds/761191148223987723/widget.png?style=shield)](https://discord.gg/fXGyhkPeMw)
+
+## Show your support
+
+We love people's support in growing and improving. Be sure to leave a ⭐️ if you like the project and
+also be sure to contribute, if you're interested!
+
+## License
+
+- [GPL V3](https://github.com/Mobairuu/Mobairu-Frontend/blob/main/LICENSE)
